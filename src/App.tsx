@@ -72,6 +72,32 @@ function Txt({value,onChange,placeholder}:{value:string;onChange:(v:string)=>voi
   );
 }
 
+function PrivacyConsent({agreed,onChange}:{agreed:boolean;onChange:(v:boolean)=>void}) {
+  return (
+    <div style={{marginBottom:20}}>
+      <div style={{fontSize:11,fontWeight:700,color:G,letterSpacing:"0.1em",marginBottom:8,textTransform:"uppercase"}}>
+        개인정보 수집·이용 동의<span style={{color:"#e05c5c",marginLeft:3}}>*</span>
+      </div>
+      <div style={{background:INP,border:"1px solid "+INB,borderRadius:8,padding:"14px 16px",marginBottom:12}}>
+        <div style={{color:W6,fontSize:11,lineHeight:1.75}}>
+          <div style={{color:W,fontSize:12,fontWeight:700,marginBottom:8}}>수집·이용 안내</div>
+          <div style={{marginBottom:4}}><span style={{color:W,fontWeight:600}}>수집 항목</span> · 이름, 소속, 전화번호, 부상 여부, 기타 신청 시 기재 내용</div>
+          <div style={{marginBottom:4}}><span style={{color:W,fontWeight:600}}>이용 목적</span> · 세미나 신청 접수, 참가 안내, 입금 확인 및 문의 응대</div>
+          <div style={{marginBottom:4}}><span style={{color:W,fontWeight:600}}>보유 기간</span> · 세미나 종료 후 1년 (이후 지체 없이 파기)</div>
+          <div style={{marginBottom:4}}><span style={{color:W,fontWeight:600}}>수집 주체</span> · 스텝업 트레이닝 (STEP UP TRAINING)</div>
+          <div><span style={{color:W,fontWeight:600}}>문의</span> · 010-6637-6811</div>
+          <div style={{marginTop:8,color:"rgba(255,255,255,0.45)",fontSize:10}}>동의를 거부하실 수 있으나, 거부 시 세미나 신청이 제한됩니다.</div>
+        </div>
+      </div>
+      <label style={{display:"flex",alignItems:"flex-start",gap:10,cursor:"pointer"}}>
+        <input type="checkbox" checked={agreed} onChange={e=>onChange(e.target.checked)}
+          style={{width:18,height:18,marginTop:2,accentColor:G,flexShrink:0,cursor:"pointer"}} />
+        <span style={{color:W,fontSize:13,lineHeight:1.5}}>위 내용을 확인하였으며, 개인정보 수집·이용에 동의합니다.</span>
+      </label>
+    </div>
+  );
+}
+
 function Admin({subs,onBack,onDel}:{subs:Submission[];onBack:()=>void;onDel:(id:string)=>void}) {
   const [filter,setFilter]=useState<string>("all");
   const [exp,setExp]=useState<string>("");
@@ -158,11 +184,12 @@ function AdminLogin({onBack,onSuccess}:{onBack:()=>void;onSuccess:()=>void}) {
 
 export default function App() {
   const [form,setForm]=useState<FormState>(empty);
+  const [privacyAgreed,setPrivacyAgreed]=useState(false);
   const [subs,setSubs]=useLocalSubs();
   const [view,setView]=useState<string>("landing");
 
   const set=(k:keyof FormState)=>(v:string)=>setForm(p=>({...p,[k]:v}));
-  const ok=form.name.trim()&&form.affiliation.trim()&&form.phone.trim()&&form.session;
+  const ok=form.name.trim()&&form.affiliation.trim()&&form.phone.trim()&&form.session&&privacyAgreed;
 
   const submit=()=>{
     if(!ok)return;
@@ -182,7 +209,7 @@ export default function App() {
         <div style={{color:W,fontSize:22,fontWeight:900,marginBottom:10}}>신청 완료!</div>
         <div style={{color:W6,fontSize:14,lineHeight:1.8,marginBottom:8}}>신청이 접수되었습니다.</div>
         <div style={{color:W6,fontSize:14,lineHeight:1.8,marginBottom:32}}>담당자 확인 후 <span style={{color:G,fontWeight:700}}>입금 안내 연락</span>을 드릴 예정입니다.</div>
-        <button onClick={()=>setForm(empty)} style={{background:"transparent",border:"1px solid "+GB,color:G,padding:"12px 32px",borderRadius:8,fontSize:14,cursor:"pointer",fontFamily:"inherit"}}>추가 신청하기</button>
+        <button onClick={()=>{setForm(empty);setPrivacyAgreed(false);}} style={{background:"transparent",border:"1px solid "+GB,color:G,padding:"12px 32px",borderRadius:8,fontSize:14,cursor:"pointer",fontFamily:"inherit"}}>추가 신청하기</button>
       </div>
     </div>
   );
@@ -264,6 +291,9 @@ export default function App() {
 
           <Field label="부상 여부"><Chips value={form.injury} onChange={set("injury")} opts={[{id:"none",label:"없음"},{id:"minor",label:"경미한 부상"},{id:"major",label:"치료 중"}]} /></Field>
           <Field label="트레이너에게 알려줄 사항"><Txt value={form.notes} onChange={set("notes")} placeholder="특이사항, 부상 부위, 트레이닝 이력 등" /></Field>
+
+          <div style={{height:1,background:W2,margin:"6px 0 14px"}} />
+          <PrivacyConsent agreed={privacyAgreed} onChange={setPrivacyAgreed} />
         </div>
 
         <div style={{marginBottom:8}}>
@@ -281,7 +311,7 @@ export default function App() {
             <a href="https://qr.kakao.com/talk/hO0DKRbB382_nnnu1L9GTxt2sdI-" target="_blank" rel="noreferrer" style={{textDecoration:"none"}}>
               <div style={{background:"rgba(254,229,0,0.06)",border:"1px solid rgba(254,229,0,0.2)",borderRadius:12,padding:"16px",textAlign:"center",cursor:"pointer"}}>
                 <div style={{fontSize:28,marginBottom:8}}>&#128172;</div>
-                <div style={{color:"#FAE100",fontSize:13,fontWeight:700,marginBottom:4}}>카카오톡 친구추가</div>
+                <div style={{color:"#FAE100",fontSize:13,fontWeight:700,marginBottom:4}}>카카오톡 stepup.training</div>
                 <div style={{color:"rgba(255,255,255,0.5)",fontSize:11}}>탭하여 바로 연결</div>
               </div>
             </a>
