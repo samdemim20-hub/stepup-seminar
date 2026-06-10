@@ -226,23 +226,30 @@ export default function App() {
           <div style={{display:"inline-block",background:G2,border:"1px solid "+GB,borderRadius:20,padding:"5px 14px",marginBottom:16}}>
             <span style={{color:G,fontSize:11,fontWeight:700,letterSpacing:"0.12em"}}>PERFORMANCE SEMINAR</span>
           </div>
-          <div style={{color:W,fontSize:32,fontWeight:900,lineHeight:1.2,letterSpacing:"-0.02em",marginBottom:12}}>
-            웨이트 트레이닝,<br />경기력으로<br />연결되고 있을까?
+          <div style={{color:W,fontSize:28,fontWeight:900,lineHeight:1.2,letterSpacing:"-0.02em",marginBottom:8}}>
+            배드민턴 선수<br />원데이 파워트레이닝
           </div>
-          <div style={{color:W6,fontSize:14,lineHeight:1.6}}>힘 전달 시스템과 퍼포먼스 향상 전략</div>
+          <div style={{color:W,fontSize:20,fontWeight:800,lineHeight:1.3,marginBottom:12}}>
+            스매시 파워와 점프력을<br />높이는 트레이닝 전략
+          </div>
+          <div style={{color:W6,fontSize:14,lineHeight:1.6}}>선수 개개인의 움직임을 직접 평가하는<br />소수정예 실습 세미나</div>
         </div>
       </div>
 
       <div style={{maxWidth:480,margin:"0 auto",padding:"0 16px"}}>
-        <div style={{background:BG2,border:"1px solid "+W2,borderRadius:12,padding:"12px 16px",marginBottom:20,display:"grid",gridTemplateColumns:"1fr 1fr",gridTemplateRows:"auto auto",gap:12}}>
+        <div style={{background:BG2,border:"1px solid "+W2,borderRadius:12,padding:"12px 16px",marginBottom:20,display:"grid",gridTemplateColumns:"1fr 1fr",gridTemplateRows:"auto auto auto",gap:12}}>
           <div>
             <div style={{color:G,fontSize:10,fontWeight:700,letterSpacing:"0.1em",marginBottom:4}}>대상</div>
             <div style={{color:W,fontSize:13,fontWeight:600}}>현역 대학·성인 배드민턴 선수</div>
           </div>
-          <div style={{gridRow:"1 / 3"}}>
+          <div style={{gridRow:"1 / 4"}}>
             <div style={{color:G,fontSize:10,fontWeight:700,letterSpacing:"0.1em",marginBottom:4}}>장소</div>
             <div style={{color:W,fontSize:13,fontWeight:600}}>스텝업 트레이닝</div>
-            <div style={{color:W6,fontSize:11,lineHeight:1.5,marginTop:2,whiteSpace:"pre-line"}}>{"동탄 감배산로 143\n유림 노르웨이숲\nC동 203-204호"}</div>
+            <div style={{color:W6,fontSize:11,lineHeight:1.5,marginTop:2,whiteSpace:"pre-line"}}>{"동탄감배산로 143\n유림노르웨이숲\nC동 203-204호"}</div>
+          </div>
+          <div>
+            <div style={{color:G,fontSize:10,fontWeight:700,letterSpacing:"0.1em",marginBottom:4}}>모집인원</div>
+            <div style={{color:W,fontSize:13,fontWeight:600}}>소수정예 6명 한정</div>
           </div>
           <div>
             <div style={{color:G,fontSize:10,fontWeight:700,letterSpacing:"0.1em",marginBottom:4}}>일시</div>
@@ -262,10 +269,10 @@ export default function App() {
         <div style={{marginBottom:20}}>
           <div style={{color:G,fontSize:10,fontWeight:700,letterSpacing:"0.15em",marginBottom:12}}>PROGRAM</div>
           {[
-            {n:"01",title:"움직임 평가 및 제한점 분석",desc:"현재 움직임 패턴과 제한점 파악 및 개선 방향"},
-            {n:"02",title:"골반-흉곽 분리 능력 향상",desc:"효율적 파워 전달을 위한 체간 분리 훈련"},
-            {n:"03",title:"힘 전달 시스템 이해",desc:"운동역학적 원리를 적용한 스윙 파워 향상"},
-            {n:"04",title:"파워 및 폭발력 트레이닝",desc:"스포츠 특이적 플라이오메트릭 및 파워 처방"},
+            {n:"01",title:"내 몸의 약점 찾기",desc:"개인별 약점·제한점 분석"},
+            {n:"02",title:"스매시 파워 향상 전략",desc:"스매시에 연결되는 파워 전략"},
+            {n:"03",title:"점프력·폭발력 트레이닝",desc:"스포츠 특이적 점프·폭발력 훈련"},
+            {n:"04",title:"경기력으로 연결되는 트레이닝",desc:"경기력 향상으로 이어지는 트레이닝 처방"},
           ].map(p=>(
             <div key={p.n} style={{display:"flex",gap:12,marginBottom:12,alignItems:"flex-start"}}>
               <div style={{color:G,fontSize:11,fontWeight:900,lineHeight:"22px",flexShrink:0,letterSpacing:"0.05em",opacity:0.7}}>{p.n}</div>
